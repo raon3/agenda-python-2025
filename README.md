@@ -8,3 +8,5 @@ Para executar o arquivo sem copilação, necessário Python 3.12x
 - Personalização de Estilo: O usuário pode escolher a fonte, o tamanho da fonte e as cores do texto e dos feriados para uma experiência personalizada.
 - Armazenamento Persistente: As notas e configurações são salvas automaticamente e carregadas sempre que o aplicativo é aberto, permitindo que o usuário continue de onde parou.
 - Suporte a Atalhos: A aplicação oferece atalhos de teclado para facilitar a navegação e o salvamento dos dados.
+
+  Obs: É criado um diretório para o armazenamento de dados em "C:\Users\username\AgendaApp" por padrão, é possível altera-lo no código fonte

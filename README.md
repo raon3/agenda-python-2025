@@ -1,4 +1,4 @@
-Uma agenda simples feita em python.
+Uma agenda simples feita em python utilizando conhecimentos básicos em python e Inteligência artificial.
 
 Para executar o arquivo sem copilação, necessário Python 3.12x
 

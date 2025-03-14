@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, colorchooser
+from tkinter import ttk, messagebox, colorchooser, font
 import calendar
 import json
 import os
@@ -45,6 +45,7 @@ class AgendaApp:
         # Retorna o caminho absoluto do arquivo
         base_path = os.path.expanduser("~") 
         app_dir = os.path.join(base_path, "AgendaApp")
+        
         if not os.path.exists(app_dir):
             os.makedirs(app_dir) 
         return os.path.join(app_dir, filename)
@@ -139,8 +140,21 @@ class AgendaApp:
             print("Nada para desfazer!")
 
     def create_ui(self):
-        # Configuração do atalho para desfazer
-        self.root.bind("<Control-z>", self.undo_last_change)
+        # Configuração da barra de menus
+        menubar = tk.Menu(self.root)
+        
+        # Menu "Arquivo"
+        file_menu = tk.Menu(menubar, tearoff=0)
+        file_menu.add_command(label="Salvar", command=self.save_data)
+        menubar.add_cascade(label="Arquivo", menu=file_menu)
+
+        # Menu "Configurações"
+        settings_menu = tk.Menu(menubar, tearoff=0)
+        settings_menu.add_command(label="Alterar Fonte", command=self.change_font)
+        settings_menu.add_command(label="Alterar Cor", command=self.change_color)
+        menubar.add_cascade(label="Configurações", menu=settings_menu)
+
+        self.root.config(menu=menubar)
 
         # Criação do calendário para os 12 meses
         notebook = ttk.Notebook(self.root)
@@ -221,6 +235,18 @@ class AgendaApp:
             if col == 7:
                 col = 0
                 row += 2
+
+    def change_font(self):
+        # Abre o diálogo para escolher a fonte
+        font_choice = font.askfont(self.root)
+        if font_choice:
+            self.current_font = (font_choice["family"], font_choice["size"])
+
+    def change_color(self):
+        # Abre o seletor de cor para mudar a cor do texto
+        color = colorchooser.askcolor()[1]
+        if color:
+            self.current_color = color
 
 if __name__ == "__main__":
     root = tk.Tk()
